@@ -16,8 +16,8 @@ A Machine Learning web application that detects phishing emails using TF-IDF + U
 - HTML/CSS/JS
 
 ## 📊 Model Performance
-Accuracy: 98.99%
-Average CV Accuracy: 97.42%
+Accuracy: 91.99%
+Average CV Accuracy: 80.42%
 
 ## ▶️ Run Locally
 
