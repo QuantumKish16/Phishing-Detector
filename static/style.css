@@ -1,0 +1,106 @@
+:root {
+    --bg-color: #f4f6f9;
+    --text-color: #222;
+    --card-color: #ffffff;
+    --button-color: #007BFF;
+    --button-hover: #0056b3;
+}
+
+body.dark {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --card-color: #1e1e1e;
+    --button-color: #4dabf7;
+    --button-hover: #339af0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.container {
+    width: 500px;
+}
+
+.card {
+    background: var(--card-color);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+textarea {
+    width: 100%;
+    height: 150px;
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 12px;
+    font-size: 16px;
+    background: var(--button-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: var(--button-hover);
+}
+
+.result {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Toggle button */
+.toggle-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* Score Meter */
+.meter {
+    width: 100%;
+    height: 20px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 15px;
+}
+
+.meter-fill {
+    height: 100%;
+    width: 0%;
+    transition: width 0.6s ease-in-out;
+}
+
+.score-container {
+    margin-top: 20px;
+}
+.card:hover {
+    transform: translateY(-5px);
+}

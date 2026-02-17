@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Phishing Email Detector</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 600px;
+            color: white;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+
+        textarea {
+            border-radius: 15px;
+            padding: 15px;
+            resize: none;
+        }
+
+        .btn-custom {
+            border-radius: 30px;
+            padding: 10px;
+            font-weight: 600;
+            transition: 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            transform: scale(1.05);
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .safe {
+            background-color: #28a745;
+        }
+
+        .phishing {
+            background-color: #dc3545;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+
+<body>
+    <button id="themeToggle" class="toggle-btn">
+    🌙
+    </button>
+
+<div class="card">
+    <h2 class="text-center mb-4">📧 Phishing Email Detector</h2>
+
+    <form method="POST" action="/predict">
+        <div class="mb-3">
+            <textarea class="form-control" name="email" rows="6" placeholder="Paste email content here..." required></textarea>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-warning btn-custom">Analyze Email</button>
+        </div>
+    </form>
+
+    {% if prediction_text %}
+        <div class="result-box 
+            {% if "Phishing" in prediction_text %}
+                phishing
+            {% else %}
+                safe
+            {% endif %}
+        ">
+            {{ prediction_text }}
+            {% if confidence %}
+                <div class="mt-2">Confidence: {{ confidence }}%</div>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    <div class="footer">
+        Built by Kishore Kumar | Machine Learning Project
+    </div>
+
+</div>
+
+<div class="score-container">
+    <h3>Security Score</h3>
+    <div class="meter">
+        <div class="meter-fill" id="meterFill"></div>
+    </div>
+    <p id="scoreText">0%</p>
+</div>
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+{% if security_score is defined %}
+<script>
+    window.onload = function() {
+        updateScore({ security_score });
+    };
+</script>
+{% endif %}
+
+
+
+</body>
+
+</html>
